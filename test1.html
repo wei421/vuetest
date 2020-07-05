@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+
+<div id="app">
+    <input type="text" v-on:input="inputChange">
+    <h3>v-bind 标签中属性使用变量值</h3>
+    <p>{{ someWord }} <a v-bind:href="link">Google</a></p>
+    <br>
+    <h3>v-once 只渲染一次</h3>
+    <h3 v-once>{{ test1() }}</h3>
+    <hr>
+    <h3>v-html 渲染变量包含原生的html</h3>
+    <p>{{ finshedLink }}</p>
+    <p v-html="finshedLink"></p>
+    <hr>
+    <h3>v-on 监听事件  向函数传参</h3>
+    <h3>The count is :{{ count }}</h3>
+    <button type="button" class="btn btn-outline-primary" v-on:click="increase(2, $event)">牛牛牛</button>
+
+    <h3>使用被监听对象的属性信息  修饰符 stop/prevent等</h3>
+    <p v-on:mousemove="updateCoordinates">你可以把鼠标移动上来看看效果-{{ x }} / {{ y }}-<span v-on:mousemove.stop>我就是试试</span>-呵呵</p>
+    <h3>v-on 监听按键事件</h3>
+    <input v-on:keyup.enter="alertMe" type="text">
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            someWord: "Hello,Weilin",
+            link: "https://www.google.com",
+            finshedLink: '<a href="https://www.google.com">Google</a>',
+            count: 0,
+            x: 0,
+            y: 0,
+            // v-bind 在标签属性使用变量
+        },
+        methods: {
+            inputChange: function (event) {
+                this.someWord = event.target.value;
+            },
+            test1: function () {
+                return this.someWord;
+            },
+            increase: function (step, ev) {
+                this.count+= step;
+                console.log(ev);
+            },
+            updateCoordinates:function (ev) {
+                this.x = ev.clientX;
+                this.y = ev.clientY;
+                // console.log(ev);
+            },
+            alertMe:function (ev) {
+                alert("Print Over!");
+            }
+        }
+    });
+</script>
+</body>
+</html>
