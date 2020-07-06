@@ -1,0 +1,17 @@
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.green {
+    background-color: green;
+}
+
+.static{
+    height: 30px;
+    border:1px solid;
+    margin-right:-1px;
+}
