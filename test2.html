@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<div id="app">
+    <h3>v-if 打包v-if</h3>
+    <template v-if="test1">
+        <p>weilin 666,hehe1</p>
+        <p>weilin 666,hehe2</p>
+    </template>
+    <p v-else-if="test2">weilin 666,hehe4</p>
+    <p>weilin 666,hehe3</p>
+    <hr>
+
+    <p v-show="test1">weilin 666,hehe1</p>
+    <p v-show="test1">weilin 666,hehe2</p>
+
+    <button type="button" class="btn btn-outline-primary" @click="test1 = !test1">test1</button>
+    <button type="button" class="btn btn-outline-primary" @click="test2 = !test2">test2</button>
+    <br>
+    <hr>
+    <h3>v-for 相关</h3>
+    <ul>
+        <li v-for="(item,i) in ingredients">{{ item }}({{ i }})</li>
+    </ul>
+    <template v-for="item in ingredients">
+        <h4>{{ item }}</h4>
+    </template>
+
+    <ul>
+        <li v-for="item in persons">
+            <div v-for="(value,key,index) in item">{{ index }}-{{ key }}:{{ value }}</div>
+        </li>
+    </ul>
+
+    <span v-for="n in 10">{{ n }}&nbsp&nbsp&nbsp&nbsp</span>
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <th>test</th>
+            <td v-for="n in 10">{{ n }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>No.</th>
+            <th>A</th>
+            <th>B</th>
+            <th>C</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(item1,i) in dataT">
+            <th>{{i}}</th>
+            <td v-for="item2 in item1">{{ item2.toFixed(2) }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            test1: true,
+            test2: true,
+
+            ingredients: ["meat", "fruit", "cookies"],
+            persons: [{
+                name: "Max",
+                age: 27,
+                color: "red"
+            }, {
+                name: "Anna",
+                age: "unknown",
+                color: "blue"
+            }
+            ],
+            dataT: JSON.parse('{"columns":["a","b","c"],"data":[[0.0358605426,0.5339497082,0.7097383484],[0.361252093,0.7967066423,0.1478450589],[0.608477238,0.2574974887,0.2689747182],[0.7708291984,0.2104358229,0.9795893933],[0.0368650614,0.2644012131,0.7956396819],[0.4679911051,0.9128176549,0.2532936624],[0.5270876686,0.210175001,0.8154765485],[0.2784470563,0.9010192684,0.7607234783],[0.9930340985,0.2109427278,0.8370866057],[0.4483388925,0.5516880736,0.1345924959]]}').data,
+        },
+        computed: {},
+        watch: {},
+        methods: {},
+        // created() {
+        //     this.currentTime();
+        // },
+    });
+</script>
+</body>
+</html>
